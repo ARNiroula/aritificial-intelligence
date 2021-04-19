@@ -11,6 +11,8 @@ goal_state=[[1,2,3],[8,0,4],[7,6,5]]
 
 initial_state=[[2,8,3],[1,6,4],[7,0,5]]
 
+table=[]
+
 DEPTH=5       ######DEPTH OF THE TREE#####################
 
 
@@ -74,6 +76,9 @@ def swapDown(state):
     #printState(state)
 
 def depthFirstGeneration(node,root,counter):
+    global table
+    if(node.name in table):
+        return
     if node.name==[] or node.name==goal_state or (counter!=DEPTH and node.name==initial_state):
         return
     if counter==0:
@@ -82,6 +87,8 @@ def depthFirstGeneration(node,root,counter):
     node2=Node((swapRight(node.name)),parent=root)
     node3=Node((swapUp(node.name)),parent=root)
     node4=Node((swapDown(node.name)),parent=root)
+    table.append(node.name)
+
     depthFirstGeneration(node1, node1, counter-1)
     depthFirstGeneration(node2, node2, counter-1)
     depthFirstGeneration(node3, node3, counter-1)
