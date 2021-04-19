@@ -13,7 +13,7 @@ initial_state=[[2,8,3],[1,6,4],[7,0,5]]
 
 table=[]
 
-DEPTH=5       ######DEPTH OF THE TREE#####################
+DEPTH=10       ######DEPTH OF THE TREE#####################
 
 
 def swapLeft(state):
@@ -100,15 +100,17 @@ def main():
     root=Node(root)
     depthFirstGeneration(root, root, DEPTH)
     for pre, fill, node in RenderTree(root):
-        print(f"{pre}{node.name}")
-        break
+        if len(node.name)==0:
+            node.parent=None
+
     DotExporter(root).to_dotfile("tree.dot")
 
     dot_file=open('tree.dot','r')
     file=dot_file.read()
     dot_file.close()
     s=Source(file,format='png')
-    s.view()
+    u = s.unflatten(stagger=2)
+    u.view()
     dot_file.close()
     goal_paths=(search.findall(root, lambda node: node.name == (goal_state)))
     pprint.pprint((goal_paths))
