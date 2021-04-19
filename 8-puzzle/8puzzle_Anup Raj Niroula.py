@@ -13,12 +13,6 @@ initial_state=[[2,8,3],[1,6,4],[7,0,5]]
 
 DEPTH=5       ######DEPTH OF THE TREE#####################
 
-for i,s in enumerate(initial_state):
-    try:
-        row,col=i,s.index(0)
-    finally:
-        continue
-
 def printState(state):
     for s in state:
         print(s)
