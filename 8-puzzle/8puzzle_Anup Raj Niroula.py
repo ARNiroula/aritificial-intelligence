@@ -107,8 +107,9 @@ def main():
     DotExporter(root).to_dotfile("tree.dot")
 
     dot_file=open('tree.dot','r')
-    dot_file=dot_file.read()
-    s=Source(dot_file,format='png')
+    file=dot_file.read()
+    dot_file.close()
+    s=Source(file,format='png')
     s.view()
     dot_file.close()
     goal_paths=(search.findall(root, lambda node: node.name == (goal_state)))
