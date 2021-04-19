@@ -13,9 +13,6 @@ initial_state=[[2,8,3],[1,6,4],[7,0,5]]
 
 DEPTH=5       ######DEPTH OF THE TREE#####################
 
-def printState(state):
-    for s in state:
-        print(s)
 
 def swapLeft(state):
     for i,s in enumerate(state):
